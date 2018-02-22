@@ -57,6 +57,12 @@ typings/
 # dotenv environment variables file
 .env
 
-#personal folder
-/private
+#Personal folder
+/Private
 
+#Libs folder
+/Libs
+
+#Debug folder -exe
+Debug/
+x64/
