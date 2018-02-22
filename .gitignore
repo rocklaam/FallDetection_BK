@@ -61,7 +61,7 @@ typings/
 /Private
 
 #Libs folder
-/Libs
+Lib/
 
 #Debug folder -exe
 Debug/
