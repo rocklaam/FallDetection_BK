@@ -63,10 +63,6 @@ Private/
 #Libs folder
 Lib/
 
-#dump files
-FallDetection_BK.sdf
-FallDetection_BK.v12.suo
-
 ##########################################################
 
 # Created by https://www.gitignore.io/api/visualstudio
