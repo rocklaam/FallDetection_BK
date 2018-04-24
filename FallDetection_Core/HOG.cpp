@@ -59,6 +59,7 @@
 //		vector<Rect> found;
 //		if (m == Default)
 //			hog.detectMultiScale(img, found, 0, Size(8, 8), Size(32, 32), 1.05, 2, false);
+//			//hog.detectMultiScale(img, found, 0, Size(640, 480), Size(32, 32));
 //		else if (m == Daimler)
 //			hog_d.detectMultiScale(img, found, 0.5, Size(8, 8), Size(32, 32), 1.05, 2, true);
 //		return found;
@@ -111,8 +112,8 @@
 //			break;
 //		}
 //		int64 t = getTickCount();
-//		//resize(frame, frame, Size(frame.size().width / 3, frame.size().height / 3));
-//		//blur(frame, frame, Size(4, 4));
+//		resize(frame, frame, Size(frame.size().width / 2, frame.size().height / 2));
+//		blur(frame, frame, Size(4, 4));
 //		vector<Rect> found = detector.detect(frame);
 //		t = getTickCount() - t;
 //
@@ -134,7 +135,7 @@
 //				}
 //			}
 //			detector.adjustRect(found[theLargestIndx]);
-//			rectangle(frame, found[theLargestIndx].tl(), found[theLargestIndx].br(), cv::Scalar(0, 255, 0), 2);
+//			rectangle(frame, found[theLargestIndx].tl(), found[theLargestIndx].br(), cv::Scalar(0, 255, 0), 4);
 //			cout << theLargestArea << endl;
 //		}
 //		imshow("People detector", frame);
