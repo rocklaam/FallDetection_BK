@@ -18,6 +18,15 @@
     <ClInclude Include="I_MovingObjSegment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="CurlUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MHIProcess.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Config.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainTest.cpp">
@@ -49,6 +58,12 @@
     </ClCompile>
     <ClCompile Include="HOG.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="CurlUtils.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="MHIProcess.cpp">
+      <Filter>Resource Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

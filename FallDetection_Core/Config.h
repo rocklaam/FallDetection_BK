@@ -1,0 +1,1 @@
+#define MHI_DURATION 0.5
