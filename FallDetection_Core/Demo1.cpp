@@ -54,7 +54,7 @@ static void  update_mhi(const Mat& img, Mat& dst, int diff_threshold, double& su
 		}
 	}
 	cout << sumHist << endl;
-	//clear the screen
+	////clear the screen
 	//system("cls");
 	// convert MHI to 8u image	
 }
