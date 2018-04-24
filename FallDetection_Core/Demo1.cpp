@@ -4,6 +4,7 @@
 
 #include <stdio.h>
 #include <iostream>
+
 #include <opencv2/optflow.hpp>
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
@@ -53,6 +54,8 @@ static void  update_mhi(const Mat& img, Mat& dst, int diff_threshold, double& su
 		}
 	}
 	cout << sumHist << endl;
+	//clear the screen
+	//system("cls");
 	// convert MHI to 8u image	
 }
 
