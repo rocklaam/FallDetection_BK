@@ -99,20 +99,20 @@
 //	cout << "Press 'q' or <ESC> to quit." << endl;
 //	cout << "Press <space> to toggle between Default and Daimler detector" << endl;
 //	Detector detector;
-//	//VideoCapture cap(0);
+//	VideoCapture cap(0);
 //	Mat frame;
 //	for (;;)
 //	{
 //		double timestamp = (double)clock() / CLOCKS_PER_SEC; // get current time in seconds
-//		//cap >> frame;
-//		frame = curlImg("http://192.168.0.222:8888/snapshot.cgi?loginuse=admin&loginpas=admin");
+//		cap >> frame;
+//		//frame = curlImg("http://192.168.0.222:8888/snapshot.cgi?loginuse=admin&loginpas=admin");
 //		if (frame.empty())
 //		{
 //			cout << "Finished reading: empty frame" << endl;
 //			break;
 //		}
 //		int64 t = getTickCount();
-//		resize(frame, frame, Size(frame.size().width / 2, frame.size().height / 2));
+//		//resize(frame, frame, Size(frame.size().width / 2, frame.size().height / 2));
 //		blur(frame, frame, Size(4, 4));
 //		vector<Rect> found = detector.detect(frame);
 //		t = getTickCount() - t;
@@ -122,7 +122,7 @@
 //			ostringstream buf;
 //			buf << "Mode: " << detector.modeName() << " ||| "
 //				<< "FPS: " << fixed << setprecision(1) << (getTickFrequency() / (double)t);
-//			putText(frame, buf.str(), Point(10, 30), FONT_HERSHEY_PLAIN, 2.0, Scalar(0, 0, 255), 2, LINE_AA);
+//			putText(frame, buf.str(), Point(10, 30), FONT_HERSHEY_PLAIN, 1.0, Scalar(0, 0, 255), 1);
 //		}
 //		if (found.size() > 0){
 //			int theLargestArea = found[0].area();
