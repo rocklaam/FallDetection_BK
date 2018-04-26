@@ -29,8 +29,7 @@ void MHIProcess::updateMHI(const Mat& img, Mat& dst, int diff_threshold, double&
 
 	threshold(silh, silh, diff_threshold, 1, THRESH_BINARY); // and threshold it
 	updateMotionHistory(silh, _mhi, timestamp, MHI_DURATION); // update MHI
-	// convert MHI to 8u image
-	_mhi.convertTo(dst, CV_8U, 255. / MHI_DURATION, (MHI_DURATION - timestamp)*255. / MHI_DURATION);
+	_mhi.convertTo(dst, CV_8U, 255. / MHI_DURATION, (MHI_DURATION - timestamp)*255. / MHI_DURATION);// convert MHI to 8u image
 
 	// calculate sumHist
 	for (int i = 0; i < dst.rows; i++){
