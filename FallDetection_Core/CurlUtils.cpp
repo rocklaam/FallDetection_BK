@@ -4,7 +4,7 @@ bool CurlUtils::curlImg(char* imgURL, Mat& dst, int timeOut){
 	vector<uchar> stream;
 	CURL *curl = curl_easy_init();
 	curl_easy_setopt(curl, CURLOPT_URL, imgURL);				//the img url
-	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _writeData);	// pass the writefunction
+	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, _writeImgData);	// pass the writefunction
 	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &stream);			// pass the stream ptr to the writefunction
 	curl_easy_setopt(curl, CURLOPT_TIMEOUT, timeOut);			// timeout if curl_easy hangs, 
 	struct curl_slist *hs = NULL;								// create header for request
@@ -13,6 +13,10 @@ bool CurlUtils::curlImg(char* imgURL, Mat& dst, int timeOut){
 
 	CURLcode res = curl_easy_perform(curl);						// start curl
 	curl_easy_cleanup(curl);									// cleanup
+	if (res)
+	{
+		return false;
+	}
 	try{
 		dst = imdecode(stream, -1);								// 'keep-as-is'
 		return true;
@@ -21,7 +25,7 @@ bool CurlUtils::curlImg(char* imgURL, Mat& dst, int timeOut){
 		return false;
 	}
 }
-size_t CurlUtils::_writeData(char *ptr, size_t size, size_t nmemb, void *userData)
+size_t CurlUtils::_writeImgData(char *ptr, size_t size, size_t nmemb, void *userData)
 {
 	vector<uchar> *stream = (vector<uchar>*)userData;
 	size_t count = size * nmemb;

@@ -14,9 +14,9 @@ using namespace cv::motempl;
 class MHIProcess
 {
 public:
-	static void updateMHI(const Mat& grayimg, Mat& dst, int diff_threshold, double& sumHist);
+	static void updateMHI(const Mat& grayimg, Mat& dst, int diff_threshold, float& sumHist);
 private:
-	static vector < Mat > buf;
+	static vector < Mat > _buf;
 	static int _last;
 	static Mat _mhi;
 };

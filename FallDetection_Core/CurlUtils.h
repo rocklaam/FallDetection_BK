@@ -14,7 +14,7 @@ class CurlUtils
 public:
 	static bool curlImg(char* imgURL, Mat& dst, int timeOut = 10);
 private:
-	static size_t _writeData(char *ptr, size_t size, size_t nmemb, void *userData);
+	static size_t _writeImgData(char *ptr, size_t size, size_t nmemb, void *userData);
 };
 
 #endif
