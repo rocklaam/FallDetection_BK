@@ -3,6 +3,8 @@
 #include <opencv2/opencv.hpp>
 #include <opencv2/core/core.hpp>
 
+#include "Config.h"
+
 using namespace cv;
 using namespace std;
 
@@ -13,8 +15,18 @@ class CurlUtils
 {
 public:
 	static bool curlImg(char* imgURL, Mat& dst, int timeOut = 10);
+	static bool curlURLWithData(char* uRL, curl_slist* header, char* stringData, int timeOut = 10);
 private:
+	static const string GOOGLE_KEY_SERVER;
+
+	static size_t _readData(void *dest, size_t size, size_t nmemb, void *userData);
 	static size_t _writeImgData(char *ptr, size_t size, size_t nmemb, void *userData);
+
+	struct WriteThis
+	{
+		const char *readptr;
+		size_t sizeleft;
+	};
 };
 
 #endif
