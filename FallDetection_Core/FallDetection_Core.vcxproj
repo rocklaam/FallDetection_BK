@@ -25,17 +25,10 @@
     <ClInclude Include="MHIProcess.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="BackgroundSub2.cpp" />
     <ClCompile Include="CurlUtils.cpp" />
     <ClCompile Include="Demo1.cpp" />
-    <ClCompile Include="GetImageFromURL.cpp" />
     <ClCompile Include="HOG.cpp" />
-    <ClCompile Include="HumanDetectTest.cpp" />
-    <ClCompile Include="mainTest.cpp" />
     <ClCompile Include="MHIProcess.cpp" />
-    <ClCompile Include="MHISample.cpp" />
-    <ClCompile Include="MHISample2.cpp" />
-    <ClCompile Include="Source1.cpp" />
     <ClCompile Include="FaceDetectionTest.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
