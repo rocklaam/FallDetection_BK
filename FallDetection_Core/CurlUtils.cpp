@@ -1,7 +1,5 @@
 #include "CurlUtils.h"
 
-const string CurlUtils::GOOGLE_KEY_SERVER = "AIzaSyAMBEmcJ-TMH0vhyDgd0yeG-hbeW6xYCeY";
-
 bool CurlUtils::curlImg(char* imgURL, Mat& dst, int timeOut)
 {
 	vector<uchar> stream;
@@ -28,7 +26,7 @@ bool CurlUtils::curlImg(char* imgURL, Mat& dst, int timeOut)
 		return false;
 	}
 }
-bool CurlUtils::curlURLWithData(char* uRL, curl_slist* header, char* stringData, int timeOut)
+bool CurlUtils::curlURLWithData(char* uRL, curl_slist* header, char* stringData, bool isPOSTCurl, int timeOut)
 {
 	// init struct to read string (char*) data
 	struct WriteThis wt;
@@ -39,10 +37,14 @@ bool CurlUtils::curlURLWithData(char* uRL, curl_slist* header, char* stringData,
 	if (curl)
 	{
 		curl_easy_setopt(curl, CURLOPT_URL, uRL);
-		curl_easy_setopt(curl, CURLOPT_POST, 1L);							// spectify POST Method
+		if (isPOSTCurl)
+		{
+			curl_easy_setopt(curl, CURLOPT_POST, 1L);						// spectify POST Method
+		}
 		curl_easy_setopt(curl, CURLOPT_READFUNCTION, _readData);			// spectify read data function
 		curl_easy_setopt(curl, CURLOPT_READDATA, &wt);						// spectify pointer to read function
 		curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, (long)wt.sizeleft);	// spectify size of string data
+		curl_easy_setopt(curl, CURLOPT_TIMEOUT, timeOut);					// timeout if curl_easy hangs
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, header);
 		CURLcode res = curl_easy_perform(curl);
 		curl_easy_cleanup(curl);

@@ -1,4 +1,3 @@
-
 // FallDetection_GUIDlg.cpp : implementation file
 //
 
@@ -6,8 +5,7 @@
 #include "FallDetection_GUI.h"
 #include "FallDetection_GUIDlg.h"
 #include "afxdialogex.h"
-
-#include "CurlUtils.h"
+#include "HumanParamsDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -60,13 +58,16 @@ void CFallDetection_GUIDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_BUTTON_CHECK, btnCheck_);
 	DDX_Control(pDX, IDC_IPADDRESS, ipAddress_);
+	DDX_Control(pDX, IDC_EDT_PORT, port_);
+	DDX_Control(pDX, IDC_EDT_USER, userName_);
+	DDX_Control(pDX, IDC_EDT_PASS, pass_);
+	DDX_Control(pDX, IDC_EDT_ID, idCamera_);
 }
 
 BEGIN_MESSAGE_MAP(CFallDetection_GUIDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
-	ON_BN_CLICKED(IDOK, &CFallDetection_GUIDlg::OnBnClickedOk)
 	ON_BN_CLICKED(IDCANCEL, &CFallDetection_GUIDlg::OnBnClickedCancel)
 	ON_BN_CLICKED(IDC_BUTTON_CHECK, &CFallDetection_GUIDlg::OnBnClickedButtonCheck)
 END_MESSAGE_MAP()
@@ -83,7 +84,7 @@ BOOL CFallDetection_GUIDlg::OnInitDialog()
 	// IDM_ABOUTBOX must be in the system command range.
 
 	// Init the default value for ip address
-	ipAddress_.SetAddress(192, 168, 0, 3);
+	ipAddress_.SetAddress(192, 168, 0, 222);
 	UpdateData(true);
 
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
@@ -162,13 +163,6 @@ HCURSOR CFallDetection_GUIDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-void CFallDetection_GUIDlg::OnBnClickedOk()
-{
-	// TODO: Add your control notification handler code here
-	CDialogEx::OnOK();
-}
-
-
 void CFallDetection_GUIDlg::OnBnClickedCancel()
 {
 	// TODO: Add your control notification handler code here
@@ -181,5 +175,36 @@ void CFallDetection_GUIDlg::OnBnClickedButtonCheck()
 	// TODO: Add your control notification handler code here
 	UpdateData(true);
 	CString ipAddress = _T("");
+	CString pass = _T("");
+	CString port = _T("");
+	CString userName = _T("");
+
 	ipAddress_.GetWindowText(ipAddress);
+	port_.GetWindowText(port);
+	userName_.GetWindowText(userName);
+	pass_.GetWindowText(pass);
+
+	Mat buf;
+	CString urlImg = _T("http://") + ipAddress + ":" + port
+		+ "/snapshot.cgi?loginuse=" + userName + "&loginpas=" + pass;
+	CT2A urlImgChar(urlImg);
+
+	if (CurlUtils::curlImg(urlImgChar, buf))
+	{
+		MessageBox(_T("Successful!"));
+		CString idCamera = _T("");
+		idCamera_.GetWindowText(idCamera);
+		CT2A idCamChar(idCamera);
+		ShowWindow(SW_HIDE);
+		HumanParamsDlg humanParamsDlg(urlImgChar, idCamChar);
+		INT_PTR nResponse = humanParamsDlg.DoModal();
+		if (nResponse == IDCANCEL)
+		{
+			ShowWindow(SW_NORMAL);
+		}
+	}
+	else
+	{
+		MessageBox(_T("Error! Try Again"));
+	}
 }

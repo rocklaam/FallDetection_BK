@@ -14,31 +14,7 @@
 //using namespace cv;
 //using namespace std;
 //
-//size_t write_data(char *ptr, size_t size, size_t nmemb, void *userdata)
-//{
-//	vector<uchar> *stream = (vector<uchar>*)userdata;
-//	size_t count = size * nmemb;
-//	stream->insert(stream->end(), ptr, ptr + count);
-//	return count;
-//}
-//
-////function to retrieve the image as cv::Mat data type
-//Mat curlImg(const char *img_url, int timeout = 10)
-//{
-//	vector<uchar> stream;
-//	CURL *curl = curl_easy_init();
-//	curl_easy_setopt(curl, CURLOPT_URL, img_url); //the img url
-//	curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, write_data); // pass the writefunction
-//	curl_easy_setopt(curl, CURLOPT_WRITEDATA, &stream); // pass the stream ptr to the writefunction
-//	curl_easy_setopt(curl, CURLOPT_TIMEOUT, timeout); // timeout if curl_easy hangs, 
-//	struct curl_slist *hs = NULL;
-//	hs = curl_slist_append(hs, "Content-Type: image/jpeg");
-//	curl_easy_setopt(curl, CURLOPT_HTTPHEADER, hs);
-//	CURLcode res = curl_easy_perform(curl); // start curl
-//	curl_easy_cleanup(curl); // cleanup
-//	return imdecode(stream, -1); // 'keep-as-is'
-//}
-//
+
 //class Detector
 //{
 //	enum Mode { Default, Daimler } m;

@@ -3,8 +3,10 @@
 //
 
 #include "stdafx.h"
+#include "afxdialogex.h"
 #include "FallDetection_GUI.h"
 #include "FallDetection_GUIDlg.h"
+#include "HumanParamsDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
