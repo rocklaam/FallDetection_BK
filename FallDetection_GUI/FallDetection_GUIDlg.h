@@ -42,4 +42,9 @@ protected:
 	CIPAddressCtrl ipAddress_;
 public:
 	afx_msg void OnBnClickedButtonCheck();
+protected:
+	CEdit port_;
+	CEdit userName_;
+	CEdit pass_;
+	CEdit idCamera_;
 };

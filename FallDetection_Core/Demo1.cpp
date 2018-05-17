@@ -26,13 +26,6 @@ bool _calElipseParams(RotatedRect &rotatedRect, vector<Point> contour, float &an
 
 int main()
 {
-	//// demo curl notification in firebase
-	//char data[] = "{\"to\":\"deBbaMW5K6U:APA91bHp12vN-nWDcn6D5c0AV7SLK7VbGHtYMyL1NmJfN5yAcJm7HNuV5ivWQqAnfl_9ls7o99wR_hnzUii8HdnULCv6WCSm4xhnNVfj-9B00LLv2jwyC65k5YxdIqaByduyxUxLWk3S\",\"data\":{\"notification\":{\"body\":\"Are you coming to our party?\",\"title\":\"This is a tester tester\"}}}";
-	//struct curl_slist *hs = NULL;
-	//hs = curl_slist_append(hs, "Authorization: key = AIzaSyAMBEmcJ - TMH0vhyDgd0yeG - hbeW6xYCeY");
-	//hs = curl_slist_append(hs, "Content-Type:application/json");
-	//CurlUtils::curlURLWithData("http://fcm.googleapis.com/fcm/send", hs, data);
-
 	// variables
 	float a_b0 = 0;								// params of ellipse to calculate d0 and dA_B
 	float angle0 = 0;
@@ -102,7 +95,7 @@ int main()
 			{
 				theLargestRect = 0;
 			}
-			if (theLargestRect > 0 || stage == STAGE_DY)	// Found a human in frame
+			if (theLargestRect > 0 /*|| stage == STAGE_DY*/)	// Found a human in frame
 			{
 				switch (stage)
 				{
@@ -145,7 +138,7 @@ int main()
 					{
 						center1 = rotatedRect.center;
 					}
-					cout << center1 << endl;
+					//cout << center1 << endl;
 					rectangle(frame, boundingRect(contours[theLargestId]), Scalar(0, 0, 255), 4);
 					if (sumHist / humanArea < THRESHOLD_CMOTION_DY && abs(center1.x - center0.x) < THRESHOLD_DX && abs(center1.y - center0.y) < THRESHOLD_DY)
 					{
