@@ -48,7 +48,7 @@ bool CurlUtils::curlURLWithData(char* uRL, curl_slist* header, char* stringData,
 		curl_easy_setopt(curl, CURLOPT_HTTPHEADER, header);
 		CURLcode res = curl_easy_perform(curl);
 		curl_easy_cleanup(curl);
-		if (res)
+		if (res || res == CURLE_WRITE_ERROR)								// This curl does not write the response
 		{
 			return false;
 		}

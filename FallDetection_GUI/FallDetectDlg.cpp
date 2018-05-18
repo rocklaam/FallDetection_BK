@@ -20,10 +20,9 @@ FallDetectDlg::FallDetectDlg(char* imgURL, char* idCam, int minHumanShape, CWnd*
 : CDialogEx(FallDetectDlg::IDD, pParent)
 {
 	_imgURL = imgURL;
-	char buf[256];
-	strncpy_s(buf, notiURL, sizeof(buf));
-	strncat_s(buf, idCam, sizeof(buf));
-	_notiURL = buf;
+	string notiURLBuf = notiURL;
+	notiURLBuf += idCam;
+	_notiURL = _strdup(notiURLBuf.c_str());
 	_isPaused = false;
 	_minHumanShape = minHumanShape;
 }
