@@ -1,6 +1,8 @@
 #include "FallDetection_GUI.h"
 #include "FallDetectDlg.h"
 
+#include "Detector.h"
+
 #pragma once
 
 // HumanParamsDlg dialog
@@ -11,6 +13,7 @@ class HumanParamsDlg : public CDialogEx
 
 private:
 	bool _isCalculated;
+	int _humanArea;
 	char* _idCam;
 	char* _imgURL;
 	static Mat _frame;

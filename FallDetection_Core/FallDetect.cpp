@@ -73,7 +73,7 @@ void FallDetect::fallDetect(Mat& resizedFrame, Mat& mhi, Mat& binaryImg, char* n
 				theLargestRect = a;
 			}
 		}
-		if (theLargestRect > AREA_MAX || theLargestRect < minHumanRect)
+		if (theLargestRect > AREA_MAX || theLargestRect <= minHumanRect)
 		{
 			theLargestRect = 0;
 		}

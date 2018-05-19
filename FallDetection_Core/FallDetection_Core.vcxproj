@@ -22,12 +22,14 @@
     <ClInclude Include="Config.h" />
     <ClInclude Include="CurlUtils.h" />
     <ClInclude Include="FallDetect.h" />
+    <ClInclude Include="Detector.h" />
     <ClInclude Include="I_MovingObjSegment.h" />
     <ClInclude Include="MHIProcess.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CurlUtils.cpp" />
     <ClCompile Include="Demo1.cpp" />
+    <ClCompile Include="Detector.cpp" />
     <ClCompile Include="FallDetect.cpp" />
     <ClCompile Include="HOG.cpp" />
     <ClCompile Include="MHIProcess.cpp" />

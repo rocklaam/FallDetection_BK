@@ -52,10 +52,14 @@ BOOL HumanParamsDlg::OnInitDialog()
 void HumanParamsDlg::OnBnClickedOk()
 {
 	// TODO: Add your control notification handler code here
+	if (_humanArea == 0)
+	{
+		MessageBox(_T("Please calculate the body shape!"), _T("Error"), MB_ICONWARNING);
+		return;
+	}
 	_isCalculated = true;
 	ShowWindow(SW_HIDE);
-
-	FallDetectDlg fallDetectDlg(_imgURL, _idCam, 3000);
+	FallDetectDlg fallDetectDlg(_imgURL, _idCam, _humanArea);
 	INT_PTR nResponse = fallDetectDlg.DoModal();
 	if (nResponse == IDCANCEL)
 	{
@@ -83,6 +87,7 @@ void HumanParamsDlg::OnBnClickedStart()
 	// TODO: Add your control notification handler code here
 	_isCalculated = false;
 	Mat frame;
+	Detector detector;
 	while (!_isCalculated)
 	{
 		if (!CurlUtils::curlImg(this->_imgURL, frame))
@@ -90,6 +95,7 @@ void HumanParamsDlg::OnBnClickedStart()
 			continue;
 		}
 		cv::resize(frame, frame, cv::Size(FRAME_WIDTH, FRAME_HEIGHT));
+		detector.calculateHuman(frame, _humanArea);
 		imshow(_nameWindow, frame);
 		if (waitKey(30) >= 0)
 		{

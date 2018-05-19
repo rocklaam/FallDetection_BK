@@ -191,7 +191,7 @@ void CFallDetection_GUIDlg::OnBnClickedButtonCheck()
 
 	if (CurlUtils::curlImg(urlImgChar, buf))
 	{
-		MessageBox(_T("Successful!"));
+		MessageBox(_T("Successful!"), _T("Done"), MB_OK);
 		CString idCamera = _T("");
 		idCamera_.GetWindowText(idCamera);
 		CT2A idCamChar(idCamera);
@@ -205,6 +205,6 @@ void CFallDetection_GUIDlg::OnBnClickedButtonCheck()
 	}
 	else
 	{
-		MessageBox(_T("Error! Try Again"));
+		MessageBox(_T("Error! Try Again!"), _T("Error"), MB_ICONWARNING);
 	}
 }
