@@ -225,7 +225,9 @@
     <None Include="res\FallDetection_GUI.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="res\danger.bmp" />
     <Image Include="res\FallDetection_GUI.ico" />
+    <Image Include="res\safe.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

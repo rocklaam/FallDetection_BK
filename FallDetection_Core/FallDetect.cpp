@@ -147,3 +147,112 @@ void FallDetect::fallDetect(Mat& resizedFrame, Mat& mhi, Mat& binaryImg, char* n
 		}
 	}
 }
+
+bool FallDetect::fallDetect2(Mat& resizedFrame, Mat& mhi, Mat& binaryImg, int minHumanRect)
+{
+	// Blur
+	blur(resizedFrame, resizedFrame, Size(4, 4));
+
+	// Background subtraction
+	_pMOG2->apply(resizedFrame, binaryImg, -1);
+	// Calculate MHI
+	float sumHist = 0;
+	MHIProcess::updateMHI(resizedFrame, mhi, 30, sumHist);
+
+	// Process for foreground image- Delete 1 point
+	morphologyEx(binaryImg, binaryImg, CV_MOP_CLOSE, _element);
+	// Shadow Delete Shadow
+	threshold(binaryImg, binaryImg, 128, 255, CV_THRESH_BINARY);
+
+	// Find contour- Retrieve the external contours, all pixels of each contours
+	vector< vector< Point> > contours;
+	_contourImg = binaryImg.clone();
+	findContours(_contourImg, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+
+	// Detect fall based on contours
+	if (contours.size() > 0)
+	{
+		// Detect human by area of contour
+		int theLargestId = 0;
+		int theLargestRect = 0;
+		for (int i = 0; i < contours.size(); i++)
+		{
+			int a = boundingRect(contours[i]).area();
+			if (a > theLargestRect && contours[i].size() > 5)
+			{
+				theLargestId = i;
+				theLargestRect = a;
+			}
+		}
+		if (theLargestRect > AREA_MAX || theLargestRect <= minHumanRect)
+		{
+			theLargestRect = 0;
+		}
+
+		if (theLargestRect > 0 /*|| stage == STAGE_DY*/)	// Found a human in frame
+		{
+			switch (_stage)
+			{
+			case STAGE_CMOTION:
+				// Drawing bouding rect
+				rectangle(resizedFrame, boundingRect(contours[theLargestId]), _color, 4);
+				// Calculate cMotion= sumHist / (contourArea(contours[theLargestId]))
+				if (sumHist / (contourArea(contours[theLargestId])) > THRESHOLD_CMOTION)
+				{
+					if (_calElipseParams(_rotatedRect, contours[theLargestId], _angle0, _a_b0))
+					{
+						_stageTime0 = (float)clock() / CLOCKS_PER_SEC;
+						_stage = STAGE_D0;
+					}
+				}
+				break;
+			case STAGE_D0:
+				if (_calElipseParams(_rotatedRect, contours[theLargestId], _angle1, _a_b1))
+				{
+					ellipse(resizedFrame, _rotatedRect, _color, 4); // Drawing bouding rect
+					if (abs(_angle1 - _angle0) > THRESHOLD_D0 || abs(_a_b0 - _a_b1) > THRESHOLD_DA_B)
+					{
+						//center0 = rotatedRect.center;
+						_stageTime0 = (float)clock() / CLOCKS_PER_SEC;
+						_humanArea = contourArea(contours[theLargestId]);
+						_stage = STAGE_DY;
+						return false;
+					}
+				}
+				_timeStamp = (float)clock() / CLOCKS_PER_SEC;
+				// Calculate dT=t1-t0
+				if (_timeStamp - _stageTime0 > DURATION_D0)
+				{
+					// Wrong alarm, back to cMotion stage
+					_stage = STAGE_CMOTION;
+				}
+				break;
+			case STAGE_DY:
+				if (_calElipseParams(_rotatedRect, contours[theLargestId], _angle1, _a_b1))
+				{
+					_center1 = _rotatedRect.center;
+				}
+				rectangle(resizedFrame, boundingRect(contours[theLargestId]), Scalar(0, 0, 255), 4);
+				if (sumHist / _humanArea < THRESHOLD_CMOTION_DY && abs(_center1.x - _center0.x) < THRESHOLD_DX && abs(_center1.y - _center0.y) < THRESHOLD_DY)
+				{
+					// Fall Detected
+					_stage = STAGE_CMOTION;
+					return true;
+				}
+				// Update the location of _center0
+				_center0 = _center1;
+				_timeStamp = (float)clock() / CLOCKS_PER_SEC;
+				// Calculate dT=t1-t0
+				if (_timeStamp - _stageTime0 > DURATION_DY)
+				{
+					// Wrong alarm, back to cMotion stage
+					_stage = STAGE_CMOTION;
+				}
+				break;
+			default:
+				_stage = STAGE_CMOTION;
+			}
+		}
+	}
+	return false;
+}

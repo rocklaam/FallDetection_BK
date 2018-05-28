@@ -34,6 +34,7 @@ FallDetectDlg::~FallDetectDlg()
 void FallDetectDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_RESULT, pcResult_);
 }
 
 
@@ -91,7 +92,19 @@ void FallDetectDlg::OnBnClickedButtonStartDetect()
 			continue;
 		}
 		cv::resize(_frame, _frame, cv::Size(FRAME_WIDTH, FRAME_HEIGHT));
-		FallDetect::fallDetect(_frame, _mhi, _bin, _notiURL);
+		//FallDetect::fallDetect(_frame, _mhi, _bin, _notiURL);
+		if (FallDetect::fallDetect2(_frame, _mhi, _bin))
+		{
+			cBitmap_.LoadBitmap(IDB_BITMAP_DANGER);
+			pcResult_.SetBitmap((HBITMAP)cBitmap_.Detach());
+			UpdateData(true);
+		}
+		else
+		{
+			cBitmap_.LoadBitmap(IDB_BITMAP_SAFE);
+			pcResult_.SetBitmap((HBITMAP)cBitmap_.Detach());
+			UpdateData(true);
+		}
 		imshow(_NAME_BLURRED, _frame);
 		imshow(_NAME_MHI, _mhi);
 		imshow(_NAME_BIN, _bin);

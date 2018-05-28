@@ -7,7 +7,7 @@ vector<Rect> Detector::detect(InputArray bluredImg)
 	// groupThreshold (set groupThreshold to 0 to turn off the grouping completely).
 	vector<Rect> found;
 	if (m == Default)
-		hog.detectMultiScale(bluredImg, found, 0, Size(8, 8), Size(32, 32), 1.05, 2, false);
+		hog.detectMultiScale(bluredImg, found, 0, Size(4, 4), Size(32, 32), 1.05, 2, false);
 	//hog.detectMultiScale(img, found, 0, Size(640, 480), Size(32, 32));
 	else if (m == Daimler)
 		hog_d.detectMultiScale(bluredImg, found, 0.5, Size(8, 8), Size(32, 32), 1.05, 2, true);

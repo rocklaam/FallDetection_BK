@@ -10,6 +10,7 @@
 class FallDetect
 {
 public:
+	static bool fallDetect2 (Mat& resizedFrame, Mat& mhi, Mat& binaryImg, int minHumanRect = 3000);
 	static void fallDetect(Mat& resizedFrame, Mat& mhi, Mat& binaryImg, char* notiURL, int minHumanRect = 3000);
 private:
 	// variables
