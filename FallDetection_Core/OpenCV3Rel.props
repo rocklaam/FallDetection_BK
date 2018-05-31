@@ -6,10 +6,10 @@
   <ItemDefinitionGroup>
     <Link>
       <AdditionalDependencies>opencv_bgsegm300.lib;opencv_calib3d300.lib;opencv_ccalib300.lib;opencv_core300.lib;opencv_datasets300.lib;opencv_face300.lib;opencv_features2d300.lib;opencv_flann300.lib;opencv_hal300.lib;opencv_highgui300.lib;opencv_imgcodecs300.lib;opencv_imgproc300.lib;opencv_latentsvm300.lib;opencv_line_descriptor300.lib;opencv_ml300.lib;opencv_objdetect300.lib;opencv_optflow300.lib;opencv_photo300.lib;opencv_reg300.lib;opencv_rgbd300.lib;opencv_saliency300.lib;opencv_shape300.lib;opencv_stitching300.lib;opencv_superres300.lib;opencv_surface_matching300.lib;opencv_text300.lib;opencv_tracking300.lib;opencv_ts300.lib;opencv_video300.lib;opencv_videoio300.lib;opencv_videostab300.lib;opencv_xfeatures2d300.lib;opencv_ximgproc300.lib;opencv_xobjdetect300.lib;opencv_xphoto300.lib;libcurl_imp.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>E:\BachKhoaUni\DoAn\ThesisProject_2018\FallDetection_BK\Private\curl-7.59.0\build\lib\MinSizeRel;$(OPENCV_WITH_CONTRIB)\install\x64\vc12;$(OPENCV_WITH_CONTRIB)\install\x64\vc12\lib;$(OPENCV_WITH_CONTRIB)\install\x64\vc12\bin;C:\opencv\sources\build\bin\Release</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\curl-7.59.0\build\lib\MinSizeRel;$(SolutionDir)Lib\openCV\build\install\x64\vc12;$(SolutionDir)Lib\openCV\build\install\x64\vc12\lib;$(SolutionDir)Lib\openCV\build\install\x64\vc12\bin</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\BachKhoaUni\DoAn\ThesisProject_2018\FallDetection_BK\Private\curl-7.59.0\include;$(OPENCV_WITH_CONTRIB)\install\include;$(OPENCV_WITH_CONTRIB)\install\include\opencv2;$(OPENCV_WITH_CONTRIB)\install\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\curl-7.59.0\include;$(SolutionDir)Lib\openCV\build\install\include;$(SolutionDir)Lib\openCV\build\install\include\opencv2;$(SolutionDir)Lib\openCV\build\install\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup />

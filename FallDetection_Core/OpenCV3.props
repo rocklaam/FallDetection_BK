@@ -5,10 +5,10 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>E:\BachKhoaUni\DoAn\ThesisProject_2018\FallDetection_BK\Private\curl-7.59.0\include;$(OPENCV_WITH_CONTRIB)\install\include;$(OPENCV_WITH_CONTRIB)\install\include\opencv2;$(OPENCV_WITH_CONTRIB)\install\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Lib\curl-7.59.0\include;$(SolutionDir)Lib\openCV\build\install\include;$(SolutionDir)Lib\openCV\build\install\include\opencv2;$(SolutionDir)Lib\openCV\build\install\include\opencv;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>E:\BachKhoaUni\DoAn\ThesisProject_2018\FallDetection_BK\Private\curl-7.59.0\build\lib\Debug;$(OPENCV_WITH_CONTRIB)\install\x64\vc12;$(OPENCV_WITH_CONTRIB)\install\x64\vc12\lib;$(OPENCV_WITH_CONTRIB)\install\x64\vc12\bin;C:\opencv\sources\build\bin\Debug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)Lib\curl-7.59.0\build\lib\Debug;$(SolutionDir)Lib\openCV\build\install\x64\vc12;$(SolutionDir)Lib\openCV\build\install\x64\vc12\lib;$(SolutionDir)Lib\openCV\build\install\x64\vc12\bin</AdditionalLibraryDirectories>
       <AdditionalDependencies>opencv_bgsegm300d.lib;opencv_calib3d300d.lib;opencv_ccalib300d.lib;opencv_core300d.lib;opencv_datasets300d.lib;opencv_face300d.lib;opencv_features2d300d.lib;opencv_flann300d.lib;opencv_hal300d.lib;opencv_highgui300d.lib;opencv_imgcodecs300d.lib;opencv_imgproc300d.lib;opencv_latentsvm300d.lib;opencv_line_descriptor300d.lib;opencv_ml300d.lib;opencv_objdetect300d.lib;opencv_optflow300d.lib;opencv_photo300d.lib;opencv_reg300d.lib;opencv_rgbd300d.lib;opencv_saliency300d.lib;opencv_shape300d.lib;opencv_stitching300d.lib;opencv_superres300d.lib;opencv_surface_matching300d.lib;opencv_text300d.lib;opencv_tracking300d.lib;opencv_ts300d.lib;opencv_video300d.lib;opencv_videoio300d.lib;opencv_videostab300d.lib;opencv_xfeatures2d300d.lib;opencv_ximgproc300d.lib;opencv_xobjdetect300d.lib;opencv_xphoto300d.lib;libcurl-d_imp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
